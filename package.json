@@ -1,0 +1,23 @@
+{
+  "name": "buybackDFX",
+  "version": "1.0.0",
+  "description": "Calculation daily profits for buyback DFX",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeFireX/buybackDFX.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DeFireX/buybackDFX/issues"
+  },
+  "homepage": "https://github.com/DeFireX/buybackDFX#readme",
+  "dependencies": {
+    "web3": "^1.3.4"
+  }
+}
