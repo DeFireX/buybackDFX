@@ -49,10 +49,14 @@ async function searchFirstBlock(lastBlock, timeDelayInSec) {
                 toBlock: blockNumberTo
             });
             for(let row of events) {
-                const {value} = row.returnValues;
-                console.log('fee', value / 1e18, symbol);
-                totalFees += value / 1e18;
+                const trx = await web3.eth.getTransaction(row.transactionHash);
+                if (trx.from.toLowerCase() !== TO_ADDRESS) {
+                    const {value} = row.returnValues;
+                    console.log('fee', value / 1e18, symbol);
+                    totalFees += value / 1e18;
+                }
             }
+
             blockNumberTo = blockNumberFrom;
         }
 
