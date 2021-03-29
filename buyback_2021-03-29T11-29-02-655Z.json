@@ -1,0 +1,11 @@
+{"fromBlock":6080372,"toBlock":6101610,"USDT":4057.265554027821,"BUSD":3016.0264632599137,
+"hoursLeft":  17.7,
+"dfxReward":  1132.188,
+"dfxStacked":  376236.812,
+"apy":  148.9,
+  "proofs": [{
+    "BUSD": "https://bscscan.com/tx/0xc2da3d466fad6cb4f0bcc8c1ed00665497e59eb81a4f703eec6a8d4769a57355",
+    "USDT": "https://bscscan.com/tx/0x334dbee961a93c61a9d7d731a031505e7a24bb1e8e4e8c3b58b9662bea6af62d",
+    "DFX" : "https://bscscan.com/tx/0xdfb3cc87d9bf9cc12f91065bbcaff2b4eb3ff74613c735457c75227ad73eed75"
+  }]
+}
