@@ -1,0 +1,6 @@
+{"fromBlock":6328031,"toBlock":6356450,"USDT":1351.9459111301546,"BUSD":766.5371275922366,
+  "proofs": [{
+    "BUSD": "https://bscscan.com/tx/0xfcc60e271de1d373d91bc46dbf2aa03e06ec5823b77fe2a1ff76e8d06a3de6a6",
+    "USDT": "https://bscscan.com/tx/0xf1dd7d50a883fe0a98c9b809427f0717880e27e06c6bde739267496218444337",
+    "DFX" : "https://bscscan.com/tx/0x757333c4a86cbdb1467ce1e9e5d07d973200cfd0b0eeff68924e65c5f5e3d219"
+  }]}
