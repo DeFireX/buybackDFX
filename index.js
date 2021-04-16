@@ -32,9 +32,9 @@ async function searchFirstBlock(lastBlock, timeDelayInSec) {
         toBlock: lastBlock,
     };
 
-    for(let c of ['0xb7552a0463515bda8b47ab7503ca893e52c58df8', '0x987f04dece1c5ae9e69cf4f93d00bbe2ca5af98c']) {
-        const df = new web3.eth.Contract(abi, c);
-        const tokenAddress = await df.methods.firstAddress().call();
+    for(let c of [{address: '0xb7552a0463515bda8b47ab7503ca893e52c58df8'}, {address: '0x987f04dece1c5ae9e69cf4f93d00bbe2ca5af98c'}, {address: '0x5daa08af18104702d4a387027e09b9b83b0fc720', tokenAddress: '0xe9e7cea3dedca5984780bafc599bd69add087d56'}]) {
+        const df = new web3.eth.Contract(abi, c.address);
+        const tokenAddress = c.tokenAddress ? c.tokenAddress : await df.methods.firstAddress().call();
         const token = new web3.eth.Contract(abiToken, tokenAddress);
         const symbol = await token.methods.symbol().call();
         console.log('Start processing for', symbol);
@@ -44,7 +44,7 @@ async function searchFirstBlock(lastBlock, timeDelayInSec) {
             const blockNumberFrom = (blockNumberTo - 5000 > firstBlock) ? blockNumberTo - 5000 : firstBlock;
 
             let events = await token.getPastEvents('Transfer', {
-                filter: {from: c, to:TO_ADDRESS},
+                filter: {from: c.address, to:TO_ADDRESS},
                 fromBlock: blockNumberFrom,
                 toBlock: blockNumberTo
             });
