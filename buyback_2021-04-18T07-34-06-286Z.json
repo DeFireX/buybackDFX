@@ -1,0 +1,5 @@
+{"fromBlock":6637475,"toBlock":6667492,"USDT":0,"BUSD":10.244187874109429, "BTCB":0.0086,
+  "proofs": [{
+    "BTCB": "https://bscscan.com/tx/0x841da333c9cf1a5bdb19de474fd857e050dba035a1f3a59712ea0e30d0c509bd",
+    "DFX" : "https://bscscan.com/tx/0xdb662c81ba4e407af0553c585f09160ed7927f5f13f5c25691417ed70fcefd6e"
+  }]}
