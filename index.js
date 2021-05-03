@@ -1,8 +1,19 @@
 const Web3 = require('web3');
-let web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed1.binance.org'));
-const fs = require('fs');
+const nodeList = [
+    // 'https://bsc-dataseed.binance.org',
+    'https://bsc-dataseed1.defibit.io',
+    'https://bsc-dataseed1.ninicoin.io',
+    'https://bsc-dataseed2.defibit.io',
+    'https://bsc-dataseed3.defibit.io',
+    'https://bsc-dataseed4.defibit.io',
+    'https://bsc-dataseed1.binance.org',
+    'https://bsc-dataseed2.binance.org',
+    'https://bsc-dataseed3.binance.org'
+];
 
-const TO_ADDRESS = '0xdAE0aca4B9B38199408ffaB32562Bf7B3B0495fE'.toLowerCase();
+// let web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed1.binance.org'));
+let web3 = new Web3(new Web3.providers.HttpProvider(nodeList[Math.floor(Math.random()*nodeList.length)]));
+const fs = require('fs');
 
 async function searchFirstBlock(lastBlock, timeDelayInSec) {
     let step = 10000;
@@ -32,7 +43,17 @@ async function searchFirstBlock(lastBlock, timeDelayInSec) {
         toBlock: lastBlock,
     };
 
-    for(let c of [{address: '0xb7552a0463515bda8b47ab7503ca893e52c58df8'}, {address: '0x987f04dece1c5ae9e69cf4f93d00bbe2ca5af98c'}, {address: '0x5daa08af18104702d4a387027e09b9b83b0fc720', tokenAddress: '0xe9e7cea3dedca5984780bafc599bd69add087d56'}]) {
+    for(let c of [/*{address: '0xb7552a0463515bda8b47ab7503ca893e52c58df8'},
+                  {address: '0x987f04dece1c5ae9e69cf4f93d00bbe2ca5af98c'},*/
+                  {address: '0x667D9312535708f105139CF2BBE70bA123573ff2', tokenAddress: '0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c', owner: '0xdAE0aca4B9B38199408ffaB32562Bf7B3B0495fE'.toLowerCase()}, // 2 pool BTC/RENBTC
+                  {address: '0x5daa08af18104702d4a387027e09b9b83b0fc720', tokenAddress: '0xe9e7cea3dedca5984780bafc599bd69add087d56', owner: '0xdAE0aca4B9B38199408ffaB32562Bf7B3B0495fE'.toLowerCase()}, // 3 POOL EPS
+                  {address: '0x7CA1fEA7d198cEaE9A319B5EE89E860aAB7D82d7', tokenAddress: '0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c'}, // BTCB
+                  {address: '0xaa954f2c619377a61380bfd084359e69d445a856', tokenAddress: '0x7083609fce4d1d8dc0c979aab8c869ea2c873402'}, // DOT
+                  {address: '0x2df142fc7e0f7164c90c9f93e3012d956c34c299', tokenAddress: '0x1D2F0da169ceB9fC7B3144628dB156f3F6c60dBE'}, // XRP
+                  {address: '0x735ba150d6a842b1fee3737f023fddf781cfeaa0', tokenAddress: '0x2170ed0880ac9a755fd29b2688956bd959f933f8'}, // ETH
+                  ]
+        )
+    {
         const df = new web3.eth.Contract(abi, c.address);
         const tokenAddress = c.tokenAddress ? c.tokenAddress : await df.methods.firstAddress().call();
         const token = new web3.eth.Contract(abiToken, tokenAddress);
@@ -41,13 +62,16 @@ async function searchFirstBlock(lastBlock, timeDelayInSec) {
         let totalFees = 0;
         let blockNumberTo = lastBlock;
         while (blockNumberTo != firstBlock) {
-            const blockNumberFrom = (blockNumberTo - 5000 > firstBlock) ? blockNumberTo - 5000 : firstBlock;
+            const blockNumberFrom = (blockNumberTo - 4000 > firstBlock) ? blockNumberTo - 4000 : firstBlock;
+            const TO_ADDRESS = c.owner ? c.owner : (await df.methods.owner().call()).toLowerCase();
+            // console.log(c.address, 'owner', TO_ADDRESS);
 
             let events = await token.getPastEvents('Transfer', {
                 filter: {from: c.address, to:TO_ADDRESS},
                 fromBlock: blockNumberFrom,
                 toBlock: blockNumberTo
             });
+            console.log('events', events.length, blockNumberTo-blockNumberFrom);
             for(let row of events) {
                 const trx = await web3.eth.getTransaction(row.transactionHash);
                 if (trx.from.toLowerCase() !== TO_ADDRESS) {
@@ -56,7 +80,7 @@ async function searchFirstBlock(lastBlock, timeDelayInSec) {
                     totalFees += value / 1e18;
                 }
             }
-
+            web3.setProvider(new Web3.providers.HttpProvider(nodeList[Math.floor(Math.random()*nodeList.length)]));
             blockNumberTo = blockNumberFrom;
         }
 
