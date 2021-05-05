@@ -8,7 +8,11 @@ const nodeList = [
     'https://bsc-dataseed4.defibit.io',
     'https://bsc-dataseed1.binance.org',
     'https://bsc-dataseed2.binance.org',
-    'https://bsc-dataseed3.binance.org'
+    'https://bsc-dataseed3.binance.org',
+    'https://bsc-dataseed1.binance.org',
+    'https://bsc-dataseed2.binance.org',
+    'https://bsc-dataseed3.binance.org',
+    'https://bsc-dataseed4.binance.org'
 ];
 
 // let web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed1.binance.org'));
@@ -62,29 +66,42 @@ async function searchFirstBlock(lastBlock, timeDelayInSec) {
         let totalFees = 0;
         let blockNumberTo = lastBlock;
         while (blockNumberTo != firstBlock) {
-            const blockNumberFrom = (blockNumberTo - 4000 > firstBlock) ? blockNumberTo - 4000 : firstBlock;
-            const TO_ADDRESS = c.owner ? c.owner : (await df.methods.owner().call()).toLowerCase();
-            // console.log(c.address, 'owner', TO_ADDRESS);
+            let blockNumberFrom;
 
-            let events = await token.getPastEvents('Transfer', {
-                filter: {from: c.address, to:TO_ADDRESS},
-                fromBlock: blockNumberFrom,
-                toBlock: blockNumberTo
-            });
-            console.log('events', events.length, blockNumberTo-blockNumberFrom);
-            for(let row of events) {
-                const trx = await web3.eth.getTransaction(row.transactionHash);
-                if (trx.from.toLowerCase() !== TO_ADDRESS) {
-                    const {value} = row.returnValues;
-                    console.log('fee', value / 1e18, symbol);
-                    totalFees += value / 1e18;
+            while(true) { // repeat until success
+                try {
+                    blockNumberFrom = (blockNumberTo - 5000 > firstBlock) ? blockNumberTo - 5000 : firstBlock;
+                    const TO_ADDRESS = c.owner ? c.owner : (await df.methods.owner().call()).toLowerCase();
+                    // console.log(c.address, 'owner', TO_ADDRESS);
+
+                    let events = await token.getPastEvents('Transfer', {
+                        filter: {from: c.address, to: TO_ADDRESS},
+                        fromBlock: blockNumberFrom,
+                        toBlock: blockNumberTo
+                    });
+                    console.log('events', events.length, blockNumberTo - blockNumberFrom);
+                    for (let row of events) {
+                        const trx = await web3.eth.getTransaction(row.transactionHash);
+                        if (trx.from.toLowerCase() !== TO_ADDRESS) {
+                            const {value} = row.returnValues;
+                            console.log('fee', value / 1e18, symbol);
+                            totalFees += value / 1e18;
+                        }
+                    }
+                }catch (e) {
+                    console.error('ty again',e);
+                    continue;
                 }
+                break;
             }
-            web3.setProvider(new Web3.providers.HttpProvider(nodeList[Math.floor(Math.random()*nodeList.length)]));
+            const rpcNode = nodeList[Math.floor(Math.random()*nodeList.length)];
+            console.log('change to', rpcNode);
+            web3.setProvider(new Web3.providers.HttpProvider(rpcNode));
             blockNumberTo = blockNumberFrom;
         }
 
-        output[symbol] = totalFees;
+        if (!output[symbol]) output[symbol] = 0;
+        output[symbol] += totalFees;
         console.log('totalFees', totalFees.toFixed(2), symbol);
     }
     const filename = new Date().toISOString().replace(/:/g,'-').replace(/\./g,'-');
