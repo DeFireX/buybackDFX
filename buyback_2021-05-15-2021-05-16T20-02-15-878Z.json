@@ -1,0 +1,7 @@
+{"fromBlock":7428820,"toBlock":7468194,"BTCB":0.008342037266571036,"BUSD":194.73617599649512,"DOT":0,"XRP":0.3923636280920787,"ETH":0.05030381655457354,
+  "proofs": [{
+    "BTCB": "https://bscscan.com/tx/0xd258e404c2331c6724facfc57ffbdde1ac69e92a63d126753a995b9e77e6085f",
+    "BUSD": "https://bscscan.com/tx/0x62479a865eb798194eb5c5ddc92ede2c8f18dac18c4f9edc515042fac4a669f1",
+    "ETH": "https://bscscan.com/tx/0x844a37652b93d3923c5e8710593b7573b7f7c5c8c1c62e9a1caa8a7eaef366d3",
+    "DFX" : "https://bscscan.com/tx/0x2ecd1dc63d906992b89901411065450760203d71b188f7356787dc02810cd337"
+  }]}
