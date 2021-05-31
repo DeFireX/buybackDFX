@@ -1,0 +1,7 @@
+{"fromBlock":7770883,"toBlock":7884612,"BTCB":0.0030170088528479718,"BUSD":168.58924580621277,"DOT":0.02829904207995528,"XRP":0.724421481023231,
+  "proofs": [{
+    "BTCB": "https://bscscan.com/tx/0x00ac74b469e126fcf2483094f592017317d3b45e61d4d1107cbc82fc47b9890c",
+    "BUSD": "https://bscscan.com/tx/0xc22f05f9daeca4f275ce383752864571039727fa63ec9326ea1f821e624319a6",
+    "DFR" : "https://bscscan.com/tx/0x3e8637b81a6a3bed0efb75bd7d6b471e9c05b2bfc8ae838b4173296498d92bb9",
+    "Burn" : "https://bscscan.com/tx/0x93fd26c16c44538def0de2dd531a5486267441508ac7ef6adfd00d85ab864d8c"
+  }]}
