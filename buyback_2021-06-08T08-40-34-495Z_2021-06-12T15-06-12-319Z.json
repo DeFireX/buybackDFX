@@ -1,0 +1,9 @@
+{"fromBlock":8113201,"toBlock":8235915,"BTCB":0.007901145332511713,"BUSD":28.78113700711911,"DOT":0.04108672703767187,"XRP":0.6319434035062879,"USDC":954,
+  "proofs": [{
+    "BTCB": "https://bscscan.com/tx/0x43b1a078d2cc01e4b1a019bf5398bdf0597159993434dab3b6fa85896d7e27df",
+    "BUSD": "https://bscscan.com/tx/0x7f8b885e4d47fea572c452bfcf81c70bc9d5b9007d90813e78fa4dbe0fb581b1",
+    "USDC": "https://www.bscscan.com/tx/0x50206472e9d7c5c6b6949fc7957fd4886767a49aea023099e41e482d3a9bd50d",
+    "DFR" : "https://bscscan.com/tx/0x7cc01f9cc3b8de23410252fb4ad47c5b55951d800cdc47c3cb93dfd28ae883f4",
+    "Add DFR liquidity" : "https://bscscan.com/tx/0x32dfc180203526bdc2bc1df7f1d5867d6d71e366b2283bd3e35f6c939f46b64a",
+    "Burn DFR LP" : "https://www.bscscan.com/tx/0x9f54994edd08e197b15d0255d5adc860115c28ee8068fbbb05565a0aab307fa3"
+  }]}
