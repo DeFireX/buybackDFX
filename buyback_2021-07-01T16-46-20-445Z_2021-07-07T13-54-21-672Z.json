@@ -1,0 +1,7 @@
+{"fromBlock":8781329,"toBlock":8949391,"BTCB":0.0056,"BUSD":20.2905, "DAI": 859.3449,
+  "proofs": [{
+    "BTCB": "https://bscscan.com/tx/0xedad178ccb1dcbf41cea3d790ca29bdbcb198858182ebe84083ea4c4534de953",
+    "DAI": "https://bscscan.com/tx/0xd4eb008f3ecf18bf9cff842befb1964bc6e47bdfa214295619b5c4d3538a1d6b",
+    "DFR" : "https://bscscan.com/tx/0x16b630de774d40c62cc57d7422f01a86965ee6c62bc40e04e9828dce722b9a43",
+    "Burn" : "https://bscscan.com/tx/0xbc27130155f0826463654a15e7bde76b5d0a2bc3479c944361e9348c25bcaec0"
+  }]}
