@@ -1,0 +1,6 @@
+{"fromBlock":9792084,"toBlock":10236636, "BTCB":0.0167, "DOT": 1.15,
+  "proofs": [{
+    "BTCB": "https://bscscan.com/tx/0x734cdd1bb4ff40f7c9cd9581929433362e0812209cad3c0303791d6aea1bc361",
+    "DOT": "https://bscscan.com/tx/0x923caaaa9bd4225e4cfafa42d6492cf55b1db5ec980e9e5acd3800750c7550aa",
+    "DFR" : "https://www.bscscan.com/tx/0xc3c023768a8f7801e08075051734a48d6200990847be2d95391f64dd696e2e81",
+  }]}
